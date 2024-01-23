@@ -1,0 +1,64 @@
+<%-include('header')%>
+
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body card-block">
+                                <form action="/admin/subcatagory/insertSubcatagoryData" enctype="multipart/form-data" method="post" class="form-horizontal">
+                                    <div class="row form-group">
+                                        <div class="col col-md-4">
+                                            <label for="text-input" class=" form-control-label">Enter Catagory</label>
+                                        </div>
+                                        <div class="col-12 col-md-8">
+                                            <input type="text" id="text-input" name="title"
+                                                placeholder="Enter Catagory Name" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-4">
+                                            <label for="text-input" class=" form-control-label">Select Catagory Image</label>
+                                        </div>
+                                        <div class="col-12 col-md-8">
+                                            <input type="file" id="text-input" name="subcatagory_image" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-4">
+                                            <label for="select" class=" form-control-label">Select Category</label>
+                                        </div>
+                                        
+                                        <div class="col-12 col-md-8">
+                                            <select name="catagory" id="select" class="form-control">
+                                                <option value="">Select Catagory</option>
+                                                <%for(var v of catedata){%>
+                                                    <option value="<%=v.id%>"><%=v.catagory%></option>
+                                                <%}%>
+                                            </select> 
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-4">
+                                            <label for="textarea-input" class=" form-control-label">Discription</label>
+                                        </div>
+                                        <div class="col-12 col-md-8">
+                                            <textarea name="description" id="textarea-input" rows="6"
+                                                placeholder="Content..." class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-dot-circle-o"></i> Submit
+                                        </button>
+                                        <button type="reset" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-ban"></i> Reset
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <%-include('footer')%>

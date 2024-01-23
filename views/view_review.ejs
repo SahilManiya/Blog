@@ -1,0 +1,146 @@
+<%- include('header')%>
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">      
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- DATA TABLE -->
+                    <h3 class="title-5 m-b-35">Review</h3>
+                    <div class="table-data__tool">
+                        <div class="table-data__tool-left">
+                            <div class="rs-select2--light rs-select2--md">
+                                <select class="js-select2" name="property">
+                                    <option selected="selected">All Properties</option>
+                                    <option value="">Option 1</option>
+                                    <option value="">Option 2</option>
+                                </select>
+                                <div class="dropDownSelect2"></div>
+                            </div>
+                            <div class="rs-select2--light rs-select2--sm">
+                                <select class="js-select2" name="time">
+                                    <option selected="selected">Today</option>
+                                    <option value="">3 Days</option>
+                                    <option value="">1 Week</option>
+                                </select>
+                                <div class="dropDownSelect2"></div>
+                            </div>
+                            <button class="au-btn-filter">
+                                <i class="zmdi zmdi-filter-list"></i>filters</button>
+                        </div>
+                        <div class="table-data__tool-right">
+                            <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                <i class="zmdi zmdi-plus"></i>add item</button>
+                            <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+                                <select class="js-select2" name="type">
+                                    <option selected="selected">Export</option>
+                                    <option value="">Option 1</option>
+                                    <option value="">Option 2</option>
+                                </select>
+                                <div class="dropDownSelect2"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <form>
+                        <input type="text" name="search" value="<%=searchInput%>">
+                        <input type="submit" value="Search">
+                    </form>
+                    <div class="table-responsive table-responsive-data2">
+                        <form action="/admin/review/deleteall" method="post">
+                            <table class="table table-data2">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <label class="au-checkbox">
+                                                <input type="checkbox" id="ckbCheckAll">
+                                                <button class="item" data-toggle="tooltip" data-placement="top" title="Delete" style="margin: -5px 0px 0px -40px; transform: translate(10px, -5px);">
+                                                    <i class="zmdi zmdi-delete" style="color: red;"></i>
+                                                </button>
+                                                <span class="au-checkmark"></span>
+                                            </label>
+                                        </th>
+                                
+                                        <th>Name</th>
+                                        <th>From</th>
+                                        <th>Description</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%if(ReviewData!=""){ %>
+                                    <%for(var re of ReviewData){%>
+                                        <tr class="tr-shadow">
+                                            <td>
+                                                <label class="au-checkbox">
+                                                    <input type="checkbox" class="checkBoxClass" name="deleteall[]" value="<%=re.id%>">
+                                                    <span class="au-checkmark"></span>
+                                                </label>
+                                            </td>
+                                        
+                                            <td><%=re.name%></td>
+                                            <td><%=re.from%></td>
+                                            <td><%=re.discription%></td>
+                                            <td>
+                                                <%if(re.isActive){%>
+                                                    <a href="/admin/review/isactive/<%=re.id%>" class="alert-success btn px-1 text-grey">Active</a>
+                                                <%} else{%>
+                                                    <a href="/admin/review/deactive/<%=re.id%>" class="alert-danger btn px-1 text-grey">Deactive</a>
+                                                <%}%> 
+                                            </td>
+                                            <td>
+                                                <div class="table-data-feature">
+                                                    <a href="/admin/review/updateData/<%=re.id%>" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                        <i class="zmdi zmdi-edit"></i>
+                                                    </a>
+                                                    <a href="/admin/review/deletData/<%=re.id%>" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                        <i class="zmdi zmdi-delete"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <%}}else{%>
+                                        <tr>
+                                            <td colspan="10" align="center">No Record Found</td>
+                                        </tr>
+                                    <%}%>
+                                </tbody>
+                            </table>
+                            <table style="width: 100%; height: 100px; margin-top: 50px; background-color: white; ">
+                                
+                                <tr style="padding: 10px 0;">
+                                    <td colspan="10" align="center">
+                                        <%for(var i=0; i<totalDocument; i=i+1){%>
+                                            <a href="?page=<%=i%>&searchInput=<%=searchInput%>" style="width: 40px; height: 40px;" class="btn btn-primary"><%=i+1%></a>
+                                        <%}%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="10" align="center">
+                                        <%var pre = parseInt(curentPage)-1%>
+                                        <%if(pre>=0){%>
+                                            <a href="?page=<%=pre%>" class="btn btn-primary">Pre</a>
+                                        <%}%> 
+                                        
+                                        <a href="?page=<%=page%>&searchInput=<%=searchInput%>" class="btn border border-primary"><%=parseInt(page)+1%></a>
+
+                                        <%var nextpage = parseInt(curentPage)+1%>
+                                        <% if(totalDocument>nextpage){%>
+                                            <a href="?page=<%=nextpage%>" class="btn btn-primary">Next</a>
+                                        <%}%>
+                                    </td>
+                                </tr>
+                            
+                            </table>
+                        </form>
+                    </div>
+                    <!-- END DATA TABLE -->
+                </div>
+            </div>
+  
+<%- include('footer')%>
+<script>
+    $(document).ready(function () {
+        $("#ckbCheckAll").click(function () {
+            $(".checkBoxClass").attr('checked', this.checked);
+        });
+    });
+</script>

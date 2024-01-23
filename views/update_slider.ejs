@@ -1,0 +1,66 @@
+<%- include('header')%>
+
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row"> 
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body card-block">
+                            <form action="/admin/slider/editSliderData" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                <input type="hidden" name="EditSliderId" value="<%=SliderData.id%>">
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="text-input" class=" form-control-label">Enter Title</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="text-input" name="title" placeholder="Edit Title" value="<%=SliderData.title%>" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="text-input" class=" form-control-label">Enter Link</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="text-input" name="link" placeholder="Enter Link" class="form-control" value="<%=SliderData.link%>">
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="email-input" class=" form-control-label">Enter Description</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="text-input" name="description" value="<%=SliderData.discription%>" placeholder="Edit Description" class="form-control">
+                                    </div>
+                                </div>          
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="file-input" class=" form-control-label">Select Image</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="file" id="file-input" name="sliderImage" class="form-control-file">
+                                        <img src="<%=SliderData.sliderImage%>" width="150px">
+                                    </div>
+                                </div>
+                                <!-- <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="file-multiple-input" class=" form-control-label">Multiple File input</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="file" id="file-multiple-input" name="file-multiple-input" multiple="" class="form-control-file">
+                                    </div>
+                                </div> -->
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary btn-sm">
+                                        <i class="fa fa-dot-circle-o"></i> Edit
+                                    </button>
+                                    <button type="reset" class="btn btn-danger btn-sm">
+                                        <i class="fa fa-ban"></i> Reset
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%-include('footer')%>

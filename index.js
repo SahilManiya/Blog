@@ -1,10 +1,9 @@
 const express = require('express');
-const port = 8007;
 var app = express();
 const path = require('path');
 const db = require('./config/mongoose');
 const session=require('express-session')
-
+const dotenv = require('dotenv');
 const cookieparser=require('cookie-parser');
 
 const Admin = require('./models/Admin');
@@ -13,6 +12,9 @@ const sliderData=require('./models/slidersite')
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-stretrgy');
 
+dotenv.config({
+    path : './.env'
+})
 
 app.use(express.urlencoded());
 
@@ -44,10 +46,10 @@ app.use('/',require('./routes/user'));
 
 app.use('/admin',require('./routes/admin'));
 
-app.listen(port, (err)=>{
+app.listen(process.env.PORT, (err)=>{
     if(err){
         console.log("Something Went Wrong");
         return false
     }
-    console.log(`Server running on port ${port}`);
+    console.log(`Server running on port ${process.env.PORT}`);
 });
